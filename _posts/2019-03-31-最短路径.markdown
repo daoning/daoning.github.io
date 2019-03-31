@@ -27,7 +27,7 @@ categories: jekyll update
 3. 将以s为from的有向边放入queue的尾部
 4. （main loop）从queue头部取出一条有向边e，若e不为null，执行5，否则结束循环
 5. 计算`e.d+e.from.shortest`的值v，若`e.to.shortest`为0或大于v，则将`e.to.shortest`置为v，将`e.to.previous`指向`e.from`（每次改变previous指针的指向时，执行6），否则do nothing。然后，对于每一条“以`e.to`为from的有向边”（e的反向有向边除外，即不走回头路），均做如下操作：将其放入set，若放入成功，将其再放入queue的尾部，否则（此有向边之前已经计算过，不再计算第二遍）do nothing。继续执行4
-6. 遍历当前节点c的各个邻居节点n，若n的previous为c，则将n的shortest值置为`v=c.shortest+c`与n间的距离。然后对n递归进行本步骤  
+6. 遍历当前节点c的各个邻居节点n，若n的previous为c，则将n的shortest值置为`v=c.shortest+c与n间的距离`。然后对n递归进行本步骤  
 结束循环时，graph中的任何一个节点，只要与s连通，都能沿着previous指针回溯到s。
 
 注：在双向队列queue的尾部放入，头部取出，保证了以s往外的发散按照广度优先遍历进行。
